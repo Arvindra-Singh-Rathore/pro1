@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOVE Card</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6e6;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        .card {
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.6s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .card.opened .message {
+            display: block;
+        }
+        .card.opened::before {
+            display: none;
+        }
+        .card::before {
+            content: "Tap to open";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            color: #888;
+            z-index: 1;
+        }
+        .card-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: absolute;
+        }
+        .card-front {
+            background-color: #ffcccc;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .card-back {
+            background-color: #fff;
+            color: #333;
+            text-align: center;
+        }
+        .message {
+            display: none;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .audio-button {
+            margin-bottom: 20px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .audio-button:focus {
+            outline: none;
+        }
+        .next-page-button {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .next-page-button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="audio-button" id="audioButton">Play Audio</button>
+    <div class="card" id="valentineCard">
+        <div class="card-content card-front">
+            <h2>LOVE CARD</h2>
+            <p>Tap to open</p>
+        </div>
+        <div class="card-content card-back">
+            <div class="message">
+                <h1>FOR MY BABY GIRL 🥰🫶🎀</h1>
+                <p>If i could give you one thing in life, I would give you the ability to see yourself through my eyes only then will you realize how special you are to me.💞
+                    {or hamesha chabar chabar krte rehna. 😁}
+                </p>
+                <button class="next-page-button" onclick="window.location.href='yes.html'">Next Page</button>
+            </div>
+        </div>
+    </div>
+    <audio class="audio-control" id="audioControl">
+        <source src="audio.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        const card = document.getElementById('valentineCard');
+        const audio = document.getElementById('audioControl');
+        const audioButton = document.getElementById('audioButton');
+
+        card.addEventListener('click', () => {
+            card.classList.toggle('opened');
+            const message = card.querySelector('.message');
+            message.style.display = card.classList.contains('opened') ? 'block' : 'none';
+        });
+
+        audioButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                audioButton.textContent = 'Pause Audio';
+            } else {
+                audio.pause();
+                audioButton.textContent = 'Play Audio';
+            }
+        });
+    </script>
+</body>
+</html>
