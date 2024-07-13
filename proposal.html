@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('flowers1.jpg'); /* Add the path to your flower image */
+            background-size: cover;
+            text-align: center;
+            color: white;
+        }
+        h1 {
+            font-size: 48px;
+            color: rgb(219, 46, 46);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            background-color: #ff69b4;
+            color: white;
+            border-radius: 10px;
+            margin: 20px;
+        }
+        #noBtn {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Girlfriend?</h1>
+    <button onclick="yes()">Yes</button>
+    <button id="noBtn" onmouseover="moveButton()">No</button>
+
+    <script>
+        function yes() {
+            window.location.href = 'card.html';
+        }
+
+        function moveButton() {
+            var noBtn = document.getElementById('noBtn');
+            var x = Math.floor(Math.random() * (window.innerWidth - noBtn.clientWidth));
+            var y = Math.floor(Math.random() * (window.innerHeight - noBtn.clientHeight));
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+    </script>
+</body>
+</html>
